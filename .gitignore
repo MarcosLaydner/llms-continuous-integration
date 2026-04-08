@@ -1,2 +1,5 @@
 .env
 /deepeval-alura
+*.db*
+*__pycache__/
+/.deepeval

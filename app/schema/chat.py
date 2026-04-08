@@ -7,5 +7,5 @@ class ChatRequest(BaseModel):
     model: Annotated[str | None, Field(
         default=None,
         description="(Opcional) O nome do modelo a ser usado (ex: 'gemma-7b-it', 'llama-3.1-8b-instant').",
-        example="gemma2-9b-it"
+        example="openai/gpt-oss-120b"
     )]
