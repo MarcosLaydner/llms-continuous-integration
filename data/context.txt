@@ -1,0 +1,53 @@
+# Contexto para o Chatbot da Juris Consultoria
+
+## Sobre Nós: Juris Consultoria
+
+A Juris Consultoria é um escritório de advocacia boutique, fundado em 2010, com sede em São Paulo, Brasil. Nossa missão é oferecer soluções jurídicas personalizadas, estratégicas e inovadoras, combinando a expertise de advogados experientes com uma abordagem moderna e focada no cliente. Acreditamos que o acesso à justiça deve ser claro e descomplicado. Nosso lema é: "Seu direito, nossa prioridade". Atuamos com uma equipe multidisciplinar, garantindo uma visão 360 graus sobre cada caso.
+
+## Áreas de Atuação
+
+Somos especializados em três grandes áreas do direito, garantindo profundidade e excelência em nossos serviços:
+
+1.  **Direito Empresarial e Societário:**
+    * **Serviços:** Constituição e dissolução de sociedades, elaboração de contratos sociais e acordos de acionistas, fusões e aquisições (M&A), recuperação judicial e extrajudicial, e consultoria em governança corporativa.
+    * **Diferencial:** Foco em startups e empresas de tecnologia, oferecendo suporte jurídico para rodadas de investimento e estruturação de stock options.
+
+2.  **Direito Tributário:**
+    * **Serviços:** Planejamento tributário estratégico para redução de carga fiscal, defesa em execuções fiscais, recuperação de créditos tributários (federais, estaduais e municipais), e consultoria sobre legislação de PIS/COFINS, ICMS e IRPJ.
+    * **Diferencial:** Atuação proativa na identificação de oportunidades de economia fiscal com base nas últimas decisões do STF e STJ.
+
+3.  **Direito do Consumidor:**
+    * **Serviços:** Ações indenizatórias por produtos ou serviços defeituosos, resolução de problemas com companhias aéreas (cancelamentos, overbooking), disputas contra planos de saúde (negativa de cobertura), e defesa contra cobranças indevidas e negativação no SPC/Serasa.
+    * **Diferencial:** Alta taxa de sucesso em acordos extrajudiciais, agilizando a resolução para o cliente.
+
+## Casos de Sucesso (Exemplos para Referência)
+
+* **Caso "InovaTech" (Empresarial):** Assessoramos a startup InovaTech em sua rodada de investimento Série A, estruturando todo o acordo com os investidores e garantindo a proteção dos sócios-fundadores. O processo foi concluído em 60 dias, um recorde para o setor.
+* **Caso "Importadora XYZ" (Tributário):** Conseguimos a recuperação de R$ 1,2 milhão em créditos de PIS/COFINS pagos indevidamente ao longo de 5 anos, através de uma tese jurídica inovadora aceita pelo Tribunal Regional Federal.
+* **Caso "Família Silva" (Consumidor):** Obtivemos uma liminar em 48 horas obrigando um plano de saúde a cobrir um tratamento de alto custo que havia sido negado, garantindo o direito à saúde do nosso cliente.
+
+## Preços e Estrutura de Honorários
+
+Trabalhamos com transparência total em nossa política de preços.
+
+* **Consulta Inicial (Diagnóstico Jurídico):**
+    * **Preço:** R$ 850,00
+    * **Descrição:** Uma sessão de até 60 minutos com um advogado especialista para análise aprofundada do caso, identificação de riscos e oportunidades, e recomendação de próximos passos. O valor da consulta é abatido dos honorários caso o cliente feche o contrato para a ação ou serviço.
+
+* **Serviços de Consultoria Mensal (Igualas):**
+    * **Plano Empreendedor (para startups e PMEs):** A partir de R$ 2.500,00/mês. Inclui 5 horas de consultoria, revisão de até 3 contratos simples e suporte via e-mail.
+    * **Plano Corporativo:** A partir de R$ 6.000,00/mês. Inclui 15 horas de consultoria, acompanhamento de processos e um advogado dedicado.
+
+* **Preços Praticados para Ações Judiciais (Exemplos):**
+    * **Ação de Indenização (Direito do Consumidor):** Geralmente, 30% sobre o valor do êxito, pagos apenas no final do processo. Não há custo inicial para o cliente, exceto as custas processuais.
+    * **Defesa em Execução Fiscal:** Honorários iniciais a partir de R$ 7.000,00, mais um percentual sobre o valor da dívida extinta ou reduzida.
+    * **Constituição de Empresa (Ltda.):** Pacote a partir de R$ 4.500,00, incluindo elaboração do contrato social e registro nos órgãos competentes.
+
+## Como Entrar em Contato
+
+Estamos disponíveis para ajudar. Você pode nos contatar através dos seguintes canais:
+
+* **Telefone Principal (WhatsApp Business):** (11) 99876-5432 (Atendimento de segunda a sexta, das 9h às 18h)
+* **E-mail para Novos Casos:** contato@jurisconsultoria.com.br
+* **Endereço do Escritório (Atendimento apenas com hora marcada):** Av. Paulista, 1234, 15º andar, Bela Vista, São Paulo - SP, CEP 01310-100.
+* **Agendamento Online:** Para agendar sua consulta inicial, visite nosso site em www.jurisconsultoria.com.br/agendamento.
