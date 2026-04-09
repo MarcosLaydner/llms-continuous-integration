@@ -4,7 +4,7 @@ import pytest
 import httpx
 import deepeval
 from dotenv import load_dotenv
-from tests.custom_metrics import CustomMetrics
+# from tests.custom_metrics import CustomMetrics
 
 load_dotenv()
 try:
@@ -24,15 +24,15 @@ from deepeval.dataset.dataset import EvaluationDataset, Golden
 from deepeval.metrics import AnswerRelevancyMetric, FaithfulnessMetric, BiasMetric, ToxicityMetric
 from deepeval.test_case.llm_test_case import LLMTestCase
 
-from tests.groq_custom_model import CustomGroqModel
-from tests.operouter_custom_model import CustomOpenRouterModel
-from tests.gemini_custom_model import CustomGeminiModel
+from groq_custom_model import CustomGroqModel
+from operouter_custom_model import CustomOpenRouterModel
+from gemini_custom_model import CustomGeminiModel
 
 # --- Configuration ---
 API_BASE_URL_CHAT = os.getenv("API_BASE_URL", "http://localhost:8000")
 EVAL_MODEL_A = CustomGroqModel(model="llama-3.3-70b-versatile")
-#EVAL_MODEL_B = CustomOpenRouterModel(model="openai/gpt-4o")
-EVAL_MODEL_C = CustomGeminiModel(model="gemini-2.5-flash")
+EVAL_MODEL_B = CustomOpenRouterModel(model="openai/gpt-4o")
+# EVAL_MODEL_C = CustomGeminiModel(model="gemini-2.5-flash")
 
 # --- Test Data (Goldens) ---
 try:

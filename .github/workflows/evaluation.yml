@@ -1,0 +1,123 @@
+name: Testes de Avaliação do LLM com DeepEval
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Instalar Dependências de Teste
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Build e Run do Container Docker
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CONFIDENT_API_KEY: ${{ secrets.CONFIDENT_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          echo "Building Docker image..."
+          docker build -t chatbot-api .
+          
+          echo "Starting Docker container in background..."
+          docker run -d -p 8080:8080 --name chatbot-container -e GROQ_API_KEY -e CONFIDENT_API_KEY -e GOOGLE_API_KEY chatbot-api
+      
+      - name: Aguardar o Servidor da Aplicação (Health Check)
+        run: |
+          echo "Waiting for application server to be ready..."
+          timeout=120
+          while ! curl -s --fail http://localhost:8080/docs; do
+            sleep 2
+            timeout=$((timeout - 2))
+            if [ $timeout -le 0 ]; then
+              echo "Timed out waiting for server."
+              echo "Displaying container logs for debugging..."
+              docker logs chatbot-container
+              exit 1
+            fi
+          done
+          echo "Server is up and running!"
+      - name: Login e Execução dos Testes do DeepEval
+        env:
+          CONFIDENT_API_KEY: ${{ secrets.CONFIDENT_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          echo "Starting DeepEval test run..."
+          # Displaying logs right before the test can also be helpful
+          echo "Final check on container logs"
+          docker logs chatbot-container
+          deepeval test run tests/test_chatbot_flow.py -vv
+  push-and-deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/chatbot-api:latest
+
+      - name: Authenticate to Google Cloud
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Deploy to Google Compute Engine
+        run: |
+          INSTANCE_NAME="chatbot-production-alura"
+          INSTANCE_ZONE="us-west1-a"
+
+          echo "Deploying to GCP instance: $INSTANCE_NAME"
+
+          cat <<EOF > deploy_script.sh
+          #!/bin/bash
+          set -e # Exit immediately if a command exits with a non-zero status.
+          
+          echo "Pulling latest image from GHCR..."
+          docker pull ghcr.io/${{ github.repository_owner }}/chatbot-api:latest
+
+          echo "Stopping and removing old container..."
+          docker stop chatbot-container && docker rm chatbot-container || true
+
+          echo "Starting new container..."
+          docker run -d -p 8080:8080 --name chatbot-container \
+            -e GROQ_API_KEY='${{ secrets.GROQ_API_KEY }}' \
+            -e CONFIDENT_API_KEY='${{ secrets.CONFIDENT_API_KEY }}' \
+            -e GOOGLE_API_KEY='${{ secrets.GOOGLE_API_KEY }}' \
+            ghcr.io/${{ github.repository_owner }}/chatbot-api:latest
+          
+          echo "Cleaning up unused docker images..."
+          docker image prune -a -f
+
+          echo "Deployment successful!"
+          EOF
+
+          gcloud compute scp deploy_script.sh $INSTANCE_NAME:~/ --zone=$INSTANCE_ZONE
+          gcloud compute ssh $INSTANCE_NAME --zone=$INSTANCE_ZONE --command="bash ~/deploy_script.sh"

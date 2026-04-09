@@ -41,7 +41,7 @@ def handle_chat_request(
     if not BACKGROUND_CONTEXT:
         raise HTTPException(status_code=500, detail="Erro interno: Contexto do chatbot não configurado.")
 
-    chosen_model = request.model if request.model else "llama3-8b-8192"
+    chosen_model = request.model if request.model else "openai/gpt-oss-120b"
     logging.info(f"Usando o modelo: {chosen_model}")
 
     db_history = crud.get_history_by_session_id(db, session_id=session_id)

@@ -59,6 +59,11 @@ O projeto consiste em uma API de chatbot desenvolvida em FastAPI, que utiliza mo
    ```
    Acesse a documentação interativa em [http://localhost:8000/docs](http://localhost:8000/docs).
 
+   **OU Execute loclamnte no ambiente virtual usando:**
+      ```
+      uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      ```
+
 2. **Execute os testes e avaliações Deepeval:**
    ```bash
    deepeval test run tests/test_chatbot_flow.py -vv
