@@ -90,7 +90,7 @@ jobs:
       - name: Deploy to Google Compute Engine
         run: |
           INSTANCE_NAME="chatbot-production-alura"
-          INSTANCE_ZONE="us-west1-a"
+          INSTANCE_ZONE="southamerica-east1-b"
 
           echo "Deploying to GCP instance: $INSTANCE_NAME"
 
