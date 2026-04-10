@@ -4,7 +4,7 @@ import pytest
 import httpx
 import deepeval
 from dotenv import load_dotenv
-# from tests.custom_metrics import CustomMetrics
+from tests.custom_metrics import CustomMetrics
 
 load_dotenv()
 try:
@@ -30,9 +30,10 @@ from gemini_custom_model import CustomGeminiModel
 
 # --- Configuration ---
 API_BASE_URL_CHAT = os.getenv("API_BASE_URL", "http://localhost:8000")
-EVAL_MODEL_A = CustomGroqModel(model="llama-3.3-70b-versatile")
-EVAL_MODEL_B = CustomOpenRouterModel(model="openai/gpt-4o")
-# EVAL_MODEL_C = CustomGeminiModel(model="gemini-2.5-flash")
+EVAL_MODEL_A = CustomGroqModel(model="llama-3.1-8b-instant")
+# EVAL_MODEL_A = CustomGroqModel(model="openai/gpt-oss-120b")
+# EVAL_MODEL_B = CustomOpenRouterModel(model="openai/gpt-4o")
+EVAL_MODEL_C = CustomGeminiModel(model="gemini-2.5-flash")
 
 # --- Test Data (Goldens) ---
 try:
@@ -124,6 +125,6 @@ def test_chatbot_singleturn(test_case: LLMTestCase):
             ToxicityMetric(model=EVAL_MODEL_A, threshold=0.25),
             FaithfulnessMetric(model=EVAL_MODEL_A, threshold=0.25),
             # CustomMetrics.JurisBotComprehensive(model=EVAL_MODEL_A, threshold=0.25),
-            # CustomMetrics.JurisBotComprehensiveDAG(model=EVAL_MODEL_C, threshold=0.25)
+            CustomMetrics.JurisBotComprehensiveDAG(model=EVAL_MODEL_A, threshold=0.25)
         ]
     )
